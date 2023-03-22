@@ -1,0 +1,28 @@
+[global]
+    monitor = 0
+    follow = keyboard
+    width = 370
+    height = 350
+    offset = 0x19
+    padding = 2
+    horizontal_padding = 2
+    transparency = 25
+    font = Monospace 12
+    format = "<b>%s</b>\n%b"
+
+[urgency_low]
+# IMPORTANT: colors have to be defined in quotation marks.
+# Otherwise the "#" and following would be interpreted as a comment.
+foreground = "#458588"
+background = "#282828"
+timeout = 4
+
+[urgency_normal]
+foreground = "#d79921"
+background = "#282828"
+timeout = 6
+
+[urgency_critical]
+foreground = "#cc241d"
+background = "#282828"
+timeout = 8
