@@ -53,6 +53,7 @@
 !.config/x11/xresources
 !.config/zsh/
 !.config/zsh/**
+.config/zsh/.zcompdump
 
 !.local
 !.local/bin

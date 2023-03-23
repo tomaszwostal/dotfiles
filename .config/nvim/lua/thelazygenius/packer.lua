@@ -88,4 +88,5 @@ use({
 })
 
 use("github/copilot.vim")
+use("cljoly/telescope-repo.nvim")
 end)
