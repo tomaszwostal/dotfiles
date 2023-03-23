@@ -80,3 +80,8 @@ alias \
     ka="kubectl access-matrix" \
     kap="kubectl access-matrix for pods" \
     kev="kubectl delete pods -A --field-selector=status.phase=Failed"
+
+# Better cat
+alias \
+    cat="bat" \
+    c="bat"
