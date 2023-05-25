@@ -7,9 +7,7 @@ local lsp = require("lsp-zero").preset({
 
 lsp.preset("recommended")
 lsp.ensure_installed({
-  'bashls',
   'vimls',
-  'yamlls',
 })
 
 local cmp = require('cmp')
@@ -46,6 +44,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
     vim.lsp.diagnostic.on_publish_diagnostics,
     {
         virtual_text = true,
+        signs = true,
     }
 )
 lsp.setup()

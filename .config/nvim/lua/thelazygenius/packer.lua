@@ -6,14 +6,26 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+  use 'shaunsingh/nord.nvim'
+
+  use 'rmagatti/goto-preview'
+  use 'xiyaowong/nvim-transparent'
+  use 'numToStr/FTerm.nvim'
+  use 'folke/todo-comments.nvim'
+  use 'rcarriga/nvim-notify'
+  use {
+      'folke/noice.nvim',
+      requires = {
+          'MunifTanjim/nui.nvim',
+          'rcarriga/nvim-notify',
+      }
+  }
 
   use {
-	  'nvim-telescope/telescope.nvim', tag = '0.1.0',
-	  -- or                            , branch = '0.1.x',
+	  'nvim-telescope/telescope.nvim', branch = '0.1.x',
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-  use 'shaunsingh/nord.nvim'
 
   use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use ('nvim-treesitter/playground')
@@ -29,6 +41,7 @@ return require('packer').startup(function(use)
           {'nvim-treesitter/nvim-treesitter-textobjects'},
           {'JoosepAlviste/nvim-ts-context-commentstring'},
           {'folke/lsp-colors.nvim'},
+          {'j-hui/fidget.nvim'},
 
 		  -- Autocompletion
 		  {'hrsh7th/nvim-cmp'},
@@ -89,4 +102,12 @@ use({
 
 use("github/copilot.vim")
 use("cljoly/telescope-repo.nvim")
+use ({
+    "Bryley/neoai.nvim",
+    require = { "MunifTanjim/nui.nvim" },
+})
+use 'mfussenegger/nvim-dap'
+use 'rcarriga/nvim-dap-ui'
+
+use { '0x100101/lab.nvim', run = 'cd js && npm ci', requires = { 'nvim-lua/plenary.nvim' } }
 end)

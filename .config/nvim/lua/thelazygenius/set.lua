@@ -32,3 +32,7 @@ vim.opt.colorcolumn = "80"
 
 vim.g.mapleader = " "
 
+-- vim.notify = require("notify").setup({
+--   background_colour = "#000000",
+-- })
+
