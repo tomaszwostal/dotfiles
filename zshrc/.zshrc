@@ -1,5 +1,23 @@
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh/
+
+export PATH=/opt/homebrew/bin:$PATH
+
+path+=(~/.rd/bin)
+path+=(~/.krew/bin)
+path+=(~/.nvm/alias)
+path+=(~/.cargo/bin)
+path+=(/opt/homebrew/bin)
+
+# History in cache directory:
+HISTSIZE=10000000
+SAVEHIST=10000000
+HISTFILE=~/.cache/zsh/history
+setopt EXTENDED_HISTORY          # write the history file in the ":start:elapsed;command" format.
+setopt HIST_REDUCE_BLANKS        # remove superfluous blanks before recording entry.
+setopt SHARE_HISTORY             # share history between all sessions.
+setopt HIST_IGNORE_ALL_DUPS      # delete old recorded entry if new entry is a duplicate.
+
 # Reevaluate the prompt string each time it's displaying a prompt
 setopt prompt_subst
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -64,6 +82,7 @@ export GOPATH='~/go'
 
 # VIM
 alias v="/opt/homebrew/bin/nvim"
+alias vim="/opt/homebrew/bin/nvim"
 
 # Nmap
 alias nm="nmap -sC -sV -oN nmap"
@@ -99,20 +118,18 @@ bindkey jj vi-cmd-mode
 alias l="eza -l --icons --git -a"
 alias lt="eza --tree --level=2 --long --icons --git"
 
-# SEC STUFF
-alias gobust='gobuster dir --wordlist ~/security/wordlists/diccnoext.txt --wildcard --url'
-alias dirsearch='python dirsearch.py -w db/dicc.txt -b -u'
-alias massdns='~/hacking/tools/massdns/bin/massdns -r ~/hacking/tools/massdns/lists/resolvers.txt -t A -o S bf-targets.txt -w livehosts.txt -s 4000'
-alias server='python -m http.server 4445'
-alias tunnel='ngrok http 4445'
-alias fuzz='ffuf -w ~/hacking/SecLists/content_discovery_all.txt -mc all -u'
-alias gr='~/go/src/github.com/tomnomnom/gf/gf'
 
 # FZF
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(/opt/homebrew/bin/fzf --zsh)
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
+--color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
+--color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796"
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-export PATH=/opt/homebrew/bin:$PATH
 
 alias mat='osascript -e "tell application \"System Events\" to key code 126 using {command down}" && tmux neww "cmatrix"'
 
@@ -142,4 +159,6 @@ fcd() { cd "$(find . -type d -not -path '*/.*' | fzf)" && l; }
 f() { echo "$(find . -type f -not -path '*/.*' | fzf)" | pbcopy }
 fv() { nvim "$(find . -type f -not -path '*/.*' | fzf)" }
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(zoxide init zsh)"
+eval "$(atuin init zsh)"
