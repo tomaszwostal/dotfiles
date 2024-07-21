@@ -161,4 +161,4 @@ fv() { nvim "$(find . -type f -not -path '*/.*' | fzf)" }
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(zoxide init zsh)"
-eval "$(atuin init zsh)"
+eval "$(atuin init zsh --disable-up-arrow)"
