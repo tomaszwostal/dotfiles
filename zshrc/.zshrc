@@ -1,7 +1,11 @@
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh/
 
-export PATH=/opt/homebrew/bin:$PATH
+
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+	. '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
 
 path+=(~/.rd/bin)
 path+=(~/.krew/bin)
@@ -162,3 +166,5 @@ fv() { nvim "$(find . -type f -not -path '*/.*' | fzf)" }
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh --disable-up-arrow)"
+
+export PATH=/opt/homebrew/bin:/nix/var/nix/profiles/default/bin:$PATH
